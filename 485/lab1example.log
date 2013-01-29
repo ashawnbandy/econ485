@@ -1,0 +1,162 @@
+-----------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  f:\485\lab1example.log
+  log type:  text
+ opened on:  24 Jan 2013, 11:32:26
+
+. //IMPORT
+> 
+> insheet using "farmse7000bea.csv", names;
+(34 vars, 3135 obs)
+
+. save farmse7000bea.dta, replace;
+file farmse7000bea.dta saved
+
+. destring, replace;
+farmproprietorsemployment already numeric; no replace
+fips already numeric; no replace
+areaname contains nonnumeric characters; no replace
+year1970 has all characters numeric; replaced as int
+(26 missing values generated)
+year1971 has all characters numeric; replaced as int
+(26 missing values generated)
+year1972 has all characters numeric; replaced as int
+(26 missing values generated)
+year1973 has all characters numeric; replaced as int
+(26 missing values generated)
+year1974 has all characters numeric; replaced as int
+(26 missing values generated)
+year1975 has all characters numeric; replaced as int
+(26 missing values generated)
+year1976 has all characters numeric; replaced as int
+(26 missing values generated)
+year1977 has all characters numeric; replaced as int
+(26 missing values generated)
+year1978 has all characters numeric; replaced as int
+(26 missing values generated)
+year1979 has all characters numeric; replaced as int
+(26 missing values generated)
+year1980 has all characters numeric; replaced as int
+(32 missing values generated)
+year1981 has all characters numeric; replaced as int
+(32 missing values generated)
+year1982 has all characters numeric; replaced as int
+(32 missing values generated)
+year1983 has all characters numeric; replaced as int
+(31 missing values generated)
+year1984 has all characters numeric; replaced as int
+(30 missing values generated)
+year1985 has all characters numeric; replaced as int
+(30 missing values generated)
+year1986 has all characters numeric; replaced as int
+(30 missing values generated)
+year1987 has all characters numeric; replaced as int
+(30 missing values generated)
+year1988 has all characters numeric; replaced as int
+(30 missing values generated)
+year1989 has all characters numeric; replaced as int
+(29 missing values generated)
+year1990 has all characters numeric; replaced as int
+(28 missing values generated)
+year1991 has all characters numeric; replaced as int
+(28 missing values generated)
+year1992 has all characters numeric; replaced as int
+(26 missing values generated)
+year1993 has all characters numeric; replaced as int
+(26 missing values generated)
+year1994 has all characters numeric; replaced as int
+(25 missing values generated)
+year1995 has all characters numeric; replaced as int
+(25 missing values generated)
+year1996 has all characters numeric; replaced as int
+(25 missing values generated)
+year1997 has all characters numeric; replaced as int
+(25 missing values generated)
+year1998 has all characters numeric; replaced as int
+(25 missing values generated)
+year1999 has all characters numeric; replaced as int
+(25 missing values generated)
+year2000 has all characters numeric; replaced as int
+(25 missing values generated)
+
+. rename year1970 farmse70;
+
+. rename year2000 farmse00;
+
+. generate perch_farmse7000 = (farmse00 - farmse70) / farmse70 * 100;
+(93 missing values generated)
+
+. keep fips areaname farmse70 farmse00 perch_farmse7000;
+
+. order fips areaname perch_farmse7000 farmse70 farmse00;
+
+. sort perch_farmse7000;
+
+. save farmse_7000, replace;
+file farmse_7000.dta saved
+
+. //order - changes the order variables appear in list
+> 
+> summarize;
+
+    Variable |       Obs        Mean    Std. Dev.       Min        Max
+-------------+--------------------------------------------------------
+        fips |      3135    30028.73    15222.11       1001      56045
+    areaname |         0
+perch_f~7000 |      3042   -1.917714    56.58178  -87.42995   604.3478
+    farmse70 |      3109    884.8504    725.8694          0       8534
+    farmse00 |      3110    719.2926    579.3855          0       7442
+
+. summarize farmse70 farmse00 perch_farmse7000, detail;
+
+                          Year1970
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            0              0
+ 5%           75              0
+10%          153              0       Obs                3109
+25%          365              0       Sum of Wgt.        3109
+
+50%          744                      Mean           884.8504
+                        Largest       Std. Dev.      725.8694
+75%         1251           5560
+90%         1727           6676       Variance       526886.4
+95%         2133           8102       Skewness       2.224564
+99%         3386           8534       Kurtosis       14.76917
+
+                          Year2000
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            0              0
+ 5%           80              0
+10%          165              0       Obs                3110
+25%          331              0       Sum of Wgt.        3110
+
+50%        601.5                      Mean           719.2926
+                        Largest       Std. Dev.      579.3855
+75%          950           5937
+90%         1376           6491       Variance       335687.6
+95%         1718           6568       Skewness       2.789126
+99%         2585           7442       Kurtosis       21.08672
+
+                      perch_farmse7000
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%    -76.65369      -87.42995
+ 5%    -58.31793      -86.35838
+10%    -49.39394      -85.97495       Obs                3042
+25%    -36.74699      -85.53547       Sum of Wgt.        3042
+
+50%    -17.24086                      Mean          -1.917714
+                        Largest       Std. Dev.      56.58178
+75%     17.75076       372.9167
+90%     63.02274       436.6667       Variance       3201.498
+95%     99.05788            540       Skewness       2.680002
+99%     214.2857       604.3478       Kurtosis       16.70406
+
+. log close;
+      name:  <unnamed>
+       log:  f:\485\lab1example.log
+  log type:  text
+ closed on:  24 Jan 2013, 11:32:27
+-----------------------------------------------------------------------------------------------------------

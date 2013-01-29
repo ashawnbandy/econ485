@@ -1,0 +1,24 @@
+------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  f:\485\gasmileage.log
+  log type:  text
+ opened on:  24 Jan 2013, 11:49:36
+
+. //IMPORT
+> 
+> insheet using "gasmileage.csv", names;
+(165 vars, 1165 obs)
+
+. save gasmileage.dta, replace;
+file gasmileage.dta saved
+
+. keep carline engdispl cityfeguid~l annualfuel~l;
+
+.         graph dot cityfeguideconventionalfuel annualfuel1costconventionalfuel;
+
+. log close;
+      name:  <unnamed>
+       log:  f:\485\gasmileage.log
+  log type:  text
+ closed on:  24 Jan 2013, 11:49:39
+------------------------------------------------------------------------------------------------
