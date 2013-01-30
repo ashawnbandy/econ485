@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\econ485\lab1\lab1problemset.log
+  log type:  text
+ opened on:  29 Jan 2013, 11:46:11
+
+. //b.Imports the BEA data from your flash drive
+> insheet using "BEA per capita income 1969 to 2008.csv", names;
+(43 vars, 3140 obs)
+
+.   foreach v of varlist fips * {;
+  2.         gen `v'_new=real(`v');
+  3.         drop `v';
+  4.         rename `v'_new `v';
+  5.         };
+(5 missing values generated)
+(5 missing values generated)
+type mismatch
+r(109);
+
+end of do-file
+
+r(109);
+
+. save "C:\econ485\lab1\x.dta"
+file C:\econ485\lab1\x.dta saved
+
+. exit
