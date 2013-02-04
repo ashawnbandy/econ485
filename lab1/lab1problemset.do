@@ -1,3 +1,7 @@
+/* 	A. Shawn Bandy
+	Lab #1 
+	January 31, 2013
+*/
 /* close previous run do-files */
 cap log close
 
@@ -11,7 +15,7 @@ clear
 #delimit ;
 
 //change directory
-cd "C:\econ485\lab1";
+cd "C:\Users\cla-spa206.CAMPUS-DOMAIN\Downloads\econ485-master\econ485-master\lab1";
 
 //a. Create a log file named lab1problemset.log on your flash drive that records all output.
 log using lab1problemset.log , replace;
@@ -20,7 +24,7 @@ log using lab1problemset.log , replace;
 insheet using "BEA per capita income 1969 to 2008.csv", names;
   
 
-foreach v of varlist fips * {;
+foreach v of varlist fips year* {;
 	gen `v'_new=real(`v');
 	drop `v';
 	rename `v'_new `v';
@@ -33,10 +37,10 @@ rename year1970 pci70;
 rename year2008 pci08;
 
 //f.	Creates a new variable called perch_pci7008 that looks at the % change in per capita income from 1970 to 2008.
-generate perch_farmse7000 =(pci08 - pci70) / pci70 * 100;
+generate perch_pci7008 =(pci08 - pci70) / pci70 * 100;
 
 //g.	Saves the FIPS code, the name of each county, pci70, pci08, and perch_pci7008 in a new dataset called pci70and08.dta in the folder on your flash drive.
-keep pci70 pci08 perch_pci7008;
+keep fips pci70 pci08 perch_pci7008;
 
 save pci70and08, replace;
 
@@ -53,16 +57,17 @@ summarize;
 summarize pci70 pci08 perch_pci7008, detail;
 
 //l.	Examines the correlation between pci70 and pci08.
-correlate pci70, pci08;
+correlate pci70 pci08;
 
 //m.	Examines the correlation between pci70 and the change in per capita income from 1970 to 2008.  
-correlate pci70, perch_pci7008;
+correlate pci70 perch_pci7008;
 
 //n.	Creates a histogram of pci70 based on fractions 
-histogram pci70, fraction
+histogram pci70, fraction;
 
 //p.	Exports the histogram in n. as a Windows Enhanced Metafile (emf) with the name pcihistogram.  Print a copy of the histogram and include with your assignment.     
-graph export pcihistogram.emf, replace
-
+graph export pcihistogram.emf, replace;
 //o.	Creates a histogram of pci70 based on fractions and with the normal distribution added.  
-hisogram pci70, fraction normal
+histogram pci70, fraction normal;
+
+log close;

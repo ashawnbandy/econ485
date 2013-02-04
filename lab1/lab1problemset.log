@@ -1,28 +1,192 @@
 --------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  C:\econ485\lab1\lab1problemset.log
+       log:  C:\Users\cla-spa206.CAMPUS-DOMAIN\Downloads\econ485-master\econ485-
+> master\lab1\lab1problemset.log
   log type:  text
- opened on:  29 Jan 2013, 11:46:11
+ opened on:  31 Jan 2013, 11:00:39
 
 . //b.Imports the BEA data from your flash drive
 > insheet using "BEA per capita income 1969 to 2008.csv", names;
 (43 vars, 3140 obs)
 
-.   foreach v of varlist fips * {;
+.   foreach v of varlist fips year* {;
   2.         gen `v'_new=real(`v');
   3.         drop `v';
   4.         rename `v'_new `v';
   5.         };
 (5 missing values generated)
-(5 missing values generated)
-type mismatch
-r(109);
+(31 missing values generated)
+(31 missing values generated)
+(31 missing values generated)
+(31 missing values generated)
+(31 missing values generated)
+(31 missing values generated)
+(31 missing values generated)
+(31 missing values generated)
+(31 missing values generated)
+(31 missing values generated)
+(37 missing values generated)
+(37 missing values generated)
+(37 missing values generated)
+(36 missing values generated)
+(35 missing values generated)
+(35 missing values generated)
+(35 missing values generated)
+(35 missing values generated)
+(35 missing values generated)
+(34 missing values generated)
+(33 missing values generated)
+(33 missing values generated)
+(31 missing values generated)
+(31 missing values generated)
+(30 missing values generated)
+(30 missing values generated)
+(30 missing values generated)
+(30 missing values generated)
+(30 missing values generated)
+(30 missing values generated)
+(30 missing values generated)
+(30 missing values generated)
+(30 missing values generated)
+(29 missing values generated)
+(29 missing values generated)
+(29 missing values generated)
+(29 missing values generated)
+(29 missing values generated)
+(29 missing values generated)
+(28 missing values generated)
 
-end of do-file
+.         drop if missing(fips);
+(5 observations deleted)
 
-r(109);
+. //e.    Renames the variables year1970 and year2008 as pci70 and pci08
+> rename year1970 pci70;
 
-. save "C:\econ485\lab1\x.dta"
-file C:\econ485\lab1\x.dta saved
+. rename year2008 pci08;
 
-. exit
+. //f.    Creates a new variable called perch_pci7008 that looks at the % change
+>  in per capita income from 1970 to 2008.
+> generate perch_pci7008 =(pci08 - pci70) / pci70 * 100;
+(46 missing values generated)
+
+. //g.    Saves the FIPS code, the name of each county, pci70, pci08, and perch_
+> pci7008 in a new dataset called pci70and08.dta in the folder on your flash dri
+> ve.
+> keep fips pci70 pci08 perch_pci7008;
+
+. save pci70and08, replace;
+file pci70and08.dta saved
+
+. //h.    Reorders the variables so that the first variable is the FIPS code, fo
+> llowed by name of the county, then the % change in per capita income, and then
+>  per capita income in 1970 and 2008.  
+> order fips;
+
+. //i.    Sorts by the change in per capita income from 1970 to 2008
+> sort perch_pci7008;
+
+. //j.    Uses the simple summarize function to look at all the variables left i
+> n the sample.
+> summarize;
+
+    Variable |       Obs        Mean    Std. Dev.       Min        Max
+-------------+--------------------------------------------------------
+        fips |      3135    30028.73    15222.11       1001      56045
+       pci70 |      3109    3252.609    775.2473       1330       8537
+       pci08 |      3112    33093.17     8530.69      12558     140275
+perch_p~7008 |      3089    935.7032    203.3258   339.2445   4607.215
+
+. //k.    Uses the detailed summarize function for only pci70, pci08, and perch_
+> pci7008 
+> summarize pci70 pci08 perch_pci7008, detail;
+
+                            pci70
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%         1817           1330
+ 5%         2131           1400
+10%         2309           1407       Obs                3109
+25%         2700           1411       Sum of Wgt.        3109
+
+50%         3214                      Mean           3252.609
+                        Largest       Std. Dev.      775.2473
+75%         3700           6936
+90%         4154           7041       Variance       601008.3
+95%         4589           7441       Skewness       .8335436
+99%         5550           8537       Kurtosis       5.181562
+
+                            pci08
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%        20026          12558
+ 5%        23347          14553
+10%        24950          15408       Obs                3112
+25%      27807.5          15452       Sum of Wgt.        3112
+
+50%      31551.5                      Mean           33093.17
+                        Largest       Std. Dev.       8530.69
+75%      36601.5          95764
+90%        42148         120766       Variance       7.28e+07
+95%        47045         129956       Skewness       2.862153
+99%        62559         140275       Kurtosis       24.05697
+
+                        perch_pci7008
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%     565.1243       339.2445
+ 5%     663.0004       348.9991
+10%     723.7597       367.0411       Obs                3089
+25%     810.7478       371.6119       Sum of Wgt.        3089
+
+50%     914.9754                      Mean           935.7032
+                        Largest       Std. Dev.      203.3258
+75%     1034.645       2056.145
+90%     1172.608       2179.003       Variance       41341.39
+95%     1262.627       2289.321       Skewness       2.790385
+99%     1553.517       4607.215       Kurtosis       39.70566
+
+. //l.    Examines the correlation between pci70 and pci08.
+> correlate pci70 pci08;
+(obs=3089)
+
+             |    pci70    pci08
+-------------+------------------
+       pci70 |   1.0000
+       pci08 |   0.6583   1.0000
+
+
+. //m.    Examines the correlation between pci70 and the change in per capita in
+> come from 1970 to 2008.  
+> correlate pci70 perch_pci7008;
+(obs=3089)
+
+             |    pci70 per~7008
+-------------+------------------
+       pci70 |   1.0000
+perch_p~7008 |  -0.3787   1.0000
+
+
+. //n.    Creates a histogram of pci70 based on fractions 
+> histogram pci70, fraction;
+(bin=34, start=1330, width=211.97059)
+
+. //p.    Exports the histogram in n. as a Windows Enhanced Metafile (emf) with 
+> the name pcihistogram.  Print a copy of the histogram and include with your as
+> signment.     
+> graph export pcihistogram.emf, replace;
+(note: file pcihistogram.emf not found)
+(file C:\Users\cla-spa206.CAMPUS-DOMAIN\Downloads\econ485-master\econ485-master\
+> lab1\pcihistogram.emf written in Enhanced Metafile format)
+
+. //o.    Creates a histogram of pci70 based on fractions and with the normal di
+> stribution added.  
+> histogram pci70, fraction normal;
+(bin=34, start=1330, width=211.97059)
+
+. log close;
+      name:  <unnamed>
+       log:  C:\Users\cla-spa206.CAMPUS-DOMAIN\Downloads\econ485-master\econ485-
+> master\lab1\lab1problemset.log
+  log type:  text
+ closed on:  31 Jan 2013, 11:00:51
+--------------------------------------------------------------------------------
