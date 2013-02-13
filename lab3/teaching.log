@@ -1,0 +1,41 @@
+-----------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\cla-spa206.CAMPUS-DOMAIN\Downloads\lab3\teaching.log
+  log type:  text
+ opened on:  12 Feb 2013, 11:32:46
+
+. /*a. Create a graph that includes both a scatter plot of average course evaluatio
+> n (course_eval) vs. instructor’s beauty
+>  (beauty) and the fitted line. Save this scatter plot as scattereval_beauty.emf s
+> o it can be printed and turned in with
+>  your assignment.*/
+> 
+>  twoway (lfit course_eval beauty)(scatter course_eval beauty);
+
+.  graph export scattereval_beauty.emf, replace;
+(file C:\Users\cla-spa206.CAMPUS-DOMAIN\Downloads\lab3\scattereval_beauty.emf writt
+> en in Enhanced Metafile format)
+
+.  graph export scattereval_beauty.png, replace;
+(file scattereval_beauty.png written in PNG format)
+
+.  //Note: this is for my use:  .emf is difficult to work with on Mac/Linux
+>  
+> /*b. Using the scatter plot and the fitted line from a), does it appear that cour
+> se evaluations and beauty are related?
+>  Explain why.*/
+> 
+> //TODO Interpretation
+>  
+> /*c. Use the summarize command to look at the description of the variables in thi
+> s dataset.*/
+> 
+> summarize;
+unrecognized command:  / invalid command name
+r(199);
+
+end of do-file
+
+r(199);
+
+. exit, clear
