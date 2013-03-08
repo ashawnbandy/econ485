@@ -1,6 +1,5 @@
 /* 	A. Shawn Bandy
-	Lab #4 Demo 
-	February 12th, 2013
+	Lab #4  - L1
 */
 /* close previous run do-files */
 cap log close
@@ -8,8 +7,8 @@ set more 1
 clear
 #delimit ;
 
-cd "C:\Users\cla-spa206.CAMPUS-DOMAIN\Downloads";
-log using arclab.log , replace;
+cd "C:\Users\cla-spa206.CAMPUS-DOMAIN\Desktop\econ485-lab4\lab4";
+log using arclab1.log , replace;
 use "arclab";
 
 /*a. Create a dummy variable, arc that is equal to one if the arc_county variable
@@ -64,7 +63,7 @@ regress empgrowth_9006 percoll90 perse90;
  */
  
 /*i. Using your results from parts e and g, does the regression model in part 
-e suffer from omitted variable bias? Explain.
+e suffer from omitted variable bias? Explain. 
 
 INTERPRETATION
 
@@ -85,5 +84,5 @@ INTERPRETATION
  covariance between res and empgrowth_9006.*/
  correlate res empgrowth_9006, covariance;
  
-save arcdata_n.dta, replace;
+save arcdata1.dta, replace;
 log close;
