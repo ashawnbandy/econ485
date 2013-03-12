@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /Users/shawn/src/econ485/arclab2.log
+  log type:  text
+ opened on:  11 Mar 2013, 19:02:10
+
+. use "arcdata1";
+file arcdata1.dta not found
+r(601);
+
+end of do-file
+
+r(601);
+
+. do "/var/folders/8r/6p_8585x5435jsc5wc_xdv5w0000gn/T//SD66697.000000"
+
+. /*      A. Shawn Bandy
+>         Lab #4 
+> */
+. /* close previous run do-files */
+. cap log close
