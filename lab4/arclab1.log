@@ -1,0 +1,208 @@
+------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /Users/shawn/src/econ485/lab4/arclab1.log
+  log type:  text
+ opened on:  11 Mar 2013, 20:26:34
+
+. use "arclab";
+
+. /*a. Create a dummy variable, arc that is equal to one if the arc_county variable
+>  indicates it is an ARC county. Otherwise, non-ARC counties should have a 
+>  value of zero. This variable will be used to see if there is a difference 
+>  in employment growth between the ARC and non-ARC counties.*/
+> 
+>  gen arc=1 if arc_county=="ARC";
+(138 missing values generated)
+
+.  replace arc=0 if arc==.;
+(138 real changes made)
+
+.  /*b. Create a set of dummy variables for each of the 13 states in the ARC region.
+>  
+> Use tabulate with the prefix state to create these variables. Hint: the state 
+> variable has the unique names of the 13 states for each county in the dataset.*/
+> 
+> tabulate state, gen(state);
+
+      state |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         AL |         47        8.44        8.44
+         GA |         50        8.98       17.41
+         KY |         74       13.29       30.70
+         MD |          4        0.72       31.42
+         MS |         36        6.46       37.88
+         NC |         36        6.46       44.34
+         NY |         33        5.92       50.27
+         OH |         45        8.08       58.35
+         PA |         59       10.59       68.94
+         SC |         11        1.97       70.92
+         TN |         69       12.39       83.30
+         VA |         38        6.82       90.13
+         WV |         55        9.87      100.00
+------------+-----------------------------------
+      Total |        557      100.00
+
+. /*c. Create a new variable empgrowth_9006 that is the percent change in employment
+>  from 1990 to 2006. Use the label command to label this “Percent change in 
+>  employment from 1990 to 2006”. Make sure you save the data as arcdata1.dta so you
+>  can use it for the next problem.*/
+> 
+>  gen empgrowth_9006 = (emp06 - emp90) / emp90;
+(4 missing values generated)
+
+. save arcdata_n.dta, replace;
+file arcdata_n.dta saved
+
+. /*d. Use the summarize command to look at the description of the variables in
+>  this dataset. */
+> summarize;
+
+    Variable |       Obs        Mean    Std. Dev.       Min        Max
+-------------+--------------------------------------------------------
+        fips |       558    33813.85    15810.15       1001      54109
+       state |         0
+      county |         0
+      manu90 |       554    6446.449    11222.06         13     118484
+      farm90 |       554    925.0144    653.6925          0       4762
+-------------+--------------------------------------------------------
+   percoll90 |       554    11.39375    5.642082   3.689338   41.72341
+       emp90 |       557     35498.5    79429.55        795     819868
+       emp06 |       554    44022.81     94828.9        897     963372
+  arc_county |         0
+    totpop90 |       554    67051.16    125637.7       2124    1336449
+-------------+--------------------------------------------------------
+       pop60 |       554    54965.85    114567.6       2443    1628587
+  popsqmi_60 |       554    112.2741     239.375          8       3735
+       rural |       554    .3122744    .4638399          0          1
+   permanu90 |       554    21.17014    10.98425   .7445443   53.52263
+   perfarm90 |       554    7.988959    7.926842          0   55.84906
+-------------+--------------------------------------------------------
+       pci90 |       554    14090.18    2814.397       7825      25984
+     perse90 |       557    16.13464    4.663423   4.079602   38.20309
+pci90_thou~s |       554    14.09018    2.814397      7.825     25.984
+         arc |       558    .7526882    .4318366          0          1
+      state1 |       557    .0843806    .2782076          0          1
+-------------+--------------------------------------------------------
+      state2 |       557    .0897666     .286104          0          1
+      state3 |       557    .1328546    .3397226          0          1
+      state4 |       557    .0071813    .0845138          0          1
+      state5 |       557     .064632    .2460963          0          1
+      state6 |       557     .064632    .2460963          0          1
+-------------+--------------------------------------------------------
+      state7 |       557     .059246    .2362967          0          1
+      state8 |       557    .0807899    .2727572          0          1
+      state9 |       557    .1059246    .3080177          0          1
+     state10 |       557    .0197487    .1392604          0          1
+     state11 |       557    .1238779    .3297384          0          1
+-------------+--------------------------------------------------------
+     state12 |       557    .0682226    .2523542          0          1
+     state13 |       557    .0987433    .2985852          0          1
+empgrow~9006 |       554    .3210966    .8151637  -.7296684   15.54692
+
+. /*e. Use the regression command to estimate the following linear
+>  regression model, under the assumption that college educated people 
+>  contribute to employment growth: */
+> regress empgrowth_9006 percoll90;
+
+      Source |       SS       df       MS              Number of obs =     554
+-------------+------------------------------           F(  1,   552) =    3.42
+       Model |  2.26518362     1  2.26518362           Prob > F      =  0.0648
+    Residual |  365.198846   552  .661592112           R-squared     =  0.0062
+-------------+------------------------------           Adj R-squared =  0.0044
+       Total |   367.46403   553  .664491916           Root MSE      =  .81338
+
+------------------------------------------------------------------------------
+empgrow~9006 |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+   percoll90 |   .0113436   .0061305     1.85   0.065    -.0006983    .0233855
+       _cons |   .1918507     .07793     2.46   0.014     .0387751    .3449264
+------------------------------------------------------------------------------
+
+. /*f. What is the estimated slope coefficient for percoll90?
+>  What is the interpretation of this slope coefficient?
+>  
+>  INTERPRETATION
+>  
+>  */
+> 
+>  /*g. Use the regression command to estimate the following 
+> linear regression model, where we now test whether college 
+> educated people and having a higher percentage of self-employed
+> individuals are important to employment growth in this region:*/
+> regress empgrowth_9006 percoll90 perse90;
+
+      Source |       SS       df       MS              Number of obs =     554
+-------------+------------------------------           F(  2,   551) =   24.61
+       Model |  30.1386418     2  15.0693209           Prob > F      =  0.0000
+    Residual |  337.325388   551  .612205785           R-squared     =  0.0820
+-------------+------------------------------           Adj R-squared =  0.0787
+       Total |   367.46403   553  .664491916           Root MSE      =  .78244
+
+------------------------------------------------------------------------------
+empgrow~9006 |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+   percoll90 |   .0180694   .0059809     3.02   0.003     .0063213    .0298175
+     perse90 |   .0490121   .0072637     6.75   0.000     .0347442      .06328
+       _cons |  -.6767699   .1489679    -4.54   0.000    -.9693844   -.3841554
+------------------------------------------------------------------------------
+
+. /*h. What is the estimated slope coefficient for percoll90 in
+>  the model from part g? What is the interpretation of this slope coefficient?
+>  
+>  INTERPRETATION
+>  
+>  */
+>  
+> /*i. Using your results from parts e and g, does the regression model in part 
+> e suffer from omitted variable bias? Explain. 
+> 
+> INTERPRETATION
+> 
+> */
+> 
+> 
+> /*j. Use the regression command to estimate the following linear
+>  regression model:*/
+> 
+>  regress percoll90 perse90;
+
+      Source |       SS       df       MS              Number of obs =     554
+-------------+------------------------------           F(  1,   552) =   15.77
+       Model |  488.962959     1  488.962959           Prob > F      =  0.0001
+    Residual |  17114.7368   552  31.0049579           R-squared     =  0.0278
+-------------+------------------------------           Adj R-squared =  0.0260
+       Total |  17603.6997   553  31.8330917           Root MSE      =  5.5682
+
+------------------------------------------------------------------------------
+   percoll90 |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+     perse90 |  -.2024086   .0509691    -3.97   0.000    -.3025257   -.1022916
+       _cons |   14.66448   .8569131    17.11   0.000     12.98127    16.34769
+------------------------------------------------------------------------------
+
+.  /*k. Use the predict command to capture the residuals from the regression in
+>  part j in a new variable named res.*/
+>  
+>  predict residual, res;
+(4 missing values generated)
+
+.  /*l. Use the covariance option of the correlate command to examine the
+>  covariance between res and empgrowth_9006.*/
+>  correlate res empgrowth_9006, covariance;
+(obs=554)
+
+             | residual emp~9006
+-------------+------------------
+    residual |  30.9489
+empgrow~9006 |  .559228  .664492
+
+
+.  save arcdata1.dta, replace;
+file arcdata1.dta saved
+
+. log close;
+      name:  <unnamed>
+       log:  /Users/shawn/src/econ485/lab4/arclab1.log
+  log type:  text
+ closed on:  11 Mar 2013, 20:26:34
+------------------------------------------------------------------------------------

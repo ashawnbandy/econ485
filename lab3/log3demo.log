@@ -1,0 +1,67 @@
+-----------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\cla-spa206.CAMPUS-DOMAIN\Downloads\lab3\log3demo.log
+  log type:  text
+ opened on:  12 Feb 2013, 11:10:21
+
+. foreach v of varlist fips year* {;
+  2.         gen `v'_new=real(`v');
+  3.         drop `v';
+  4.         rename `v'_new `v';
+  5.         };
+(5 missing values generated)
+(31 missing values generated)
+(31 missing values generated)
+(31 missing values generated)
+(31 missing values generated)
+(31 missing values generated)
+(31 missing values generated)
+(31 missing values generated)
+(31 missing values generated)
+(31 missing values generated)
+(31 missing values generated)
+(37 missing values generated)
+(37 missing values generated)
+(37 missing values generated)
+(36 missing values generated)
+(35 missing values generated)
+(35 missing values generated)
+(35 missing values generated)
+(35 missing values generated)
+(35 missing values generated)
+(34 missing values generated)
+(33 missing values generated)
+(33 missing values generated)
+(31 missing values generated)
+(31 missing values generated)
+(30 missing values generated)
+(30 missing values generated)
+(30 missing values generated)
+(30 missing values generated)
+(30 missing values generated)
+(30 missing values generated)
+(30 missing values generated)
+
+. //regress var1 var2
+> regress year1980 year1981;
+
+      Source |       SS       df       MS              Number of obs =    3103
+-------------+------------------------------           F(  1,  3101) =       .
+       Model |  1.1148e+09     1  1.1148e+09           Prob > F      =  0.0000
+    Residual |  1624397.34  3101  523.830163           R-squared     =  0.9985
+-------------+------------------------------           Adj R-squared =  0.9985
+       Total |  1.1164e+09  3102  359910.797           Root MSE      =  22.887
+
+------------------------------------------------------------------------------
+    year1980 |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    year1981 |   .9948259   .0006819  1458.84   0.000     .9934888     .996163
+       _cons |   2.871211   .6851728     4.19   0.000     1.527772    4.214649
+------------------------------------------------------------------------------
+
+. log close;
+      name:  <unnamed>
+       log:  C:\Users\cla-spa206.CAMPUS-DOMAIN\Downloads\lab3\log3demo.log
+  log type:  text
+ closed on:  12 Feb 2013, 11:10:21
+-----------------------------------------------------------------------------------
