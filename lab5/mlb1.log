@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\cla-spa206.CAMPUS-DOMAIN\Downloads\lab5\mlb1.log
+  log type:  text
+ opened on:  12 Mar 2013, 11:43:12
+
+. use "mlb1.dta";
+
+. log close;
+      name:  <unnamed>
+       log:  C:\Users\cla-spa206.CAMPUS-DOMAIN\Downloads\lab5\mlb1.log
+  log type:  text
+ closed on:  12 Mar 2013, 11:43:12
+--------------------------------------------------------------------------------
