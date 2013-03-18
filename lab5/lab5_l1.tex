@@ -1,5 +1,14 @@
 \begin{description} %TODO
-	\item{d.} Look at your regression results, the test for multicollinearity, and the test for correlation. Is there a problem with multicollinearity in the model? Look at the variables in the model. If you believe there is a problem with multicollinearity, explain why you might have that problem.
-	\item{g.} Is multicollinearity a problem for the model in part e. Why do you think this result is different from before?
-	\item{p.} Why did you decide to include the variable you chose for your model in part o?
+	\item{d.} Look at your regression results, the test for multicollinearity, and the test for correlation. Is there a problem with multicollinearity in the model? Look at the variables in the model. If you believe there is a problem with multicollinearity, explain why you might have that problem.\\
+	
+	The \emph{VIF} for \emph{hits} and years is above 5 and the correlation of those two variables and many of the rest are high so I would say that the model should be re-evaluated.  It certainly makes sense that nearly every factor that relates to player salary in MLB could be described as functions with \emph{hits} and \emph{years} as inputs.  If independent variables can be determined by other independent variables then multicollinearity is a concern.\\
+	
+	\item{g.} Is multicollinearity a problem for the model in part e. Why do you think this result is different from before? \\
+	
+	Multicollinearity does not appear to be a problem for the model in part e.  After reviewing the independent variables it does not seem that any are functions of any others in the model.  \\
+	
+	\item{p.} Why did you decide to include the variable you chose for your model in part o? \\
+	
+	The honest truth is that I know very little about baseball so \emph{hruns} - the variable I chose - is something I recognize.  I can easily imagine that there is a relationship between the number of home  runs a player hits has a strong positive impact on the player's salary.  One of the few times that baseball stories spill over into news sections other than sports is when there is a story involving home runs and it makes sense  that a player that can garner that much attention would be highly valued by the team's management. \\
+	
 \end{description}
