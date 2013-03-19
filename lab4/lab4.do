@@ -7,8 +7,8 @@ set more 1
 clear
 #delimit ;
 
-cd "C:\Users\cla-spa206.CAMPUS-DOMAIN\Desktop\econ485-lab4\lab4";
-log using arclab1.log , replace;
+cd "/Users/Shawn/src/econ485/lab4";
+log using arclab1x.log , replace;
 use "arclab";
 
 /*a. Create a dummy variable, arc that is equal to one if the arc_county variable

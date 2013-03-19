@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  /Users/shawn/src/econ485/lab5/mlb1.log
   log type:  text
- opened on:  14 Mar 2013, 11:08:38
+ opened on:  18 Mar 2013, 13:11:41
 
 . use "mlb1.dta";
 
@@ -383,5 +383,5 @@ Breusch-Pagan / Cook-Weisberg test for heteroskedasticity
       name:  <unnamed>
        log:  /Users/shawn/src/econ485/lab5/mlb1.log
   log type:  text
- closed on:  14 Mar 2013, 11:08:38
+ closed on:  18 Mar 2013, 13:11:41
 ------------------------------------------------------------------------------------

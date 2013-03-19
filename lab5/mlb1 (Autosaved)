@@ -9,7 +9,7 @@ clear
 #delimit ;
 
 cd "/Users/shawn/src/econ485/lab5";
-log using mlb1.log , replace;
+log using mlb2.log , replace;
 
 use "mlb1.dta";
 

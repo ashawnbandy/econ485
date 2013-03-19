@@ -1,6 +1,8 @@
-\item Which of the following factors will lower the variance of an OLS estimator. Explain. %TODO
+\item Which of the following factors will lower the variance of an OLS estimator. Explain.
 	\begin{enumerate}[a.] 
 		\item Increasing the number of observations.
 		\item Increasing the number of explanatory variables that reduce the error variance in the model.
 		\item Minimizing the multicollinearity in the model.
 	\end{enumerate}
+	{\begin{center}{$Var(\hat{\beta_1}) = \frac{\sigma^2}{TSS_1} \frac{1}{1-R^2_1}$}\end{center}}
+	All of these factors will lower the variance of an OLS estimator.  Increasing the number of observations will increase the Total Sum of Squares (TSS). As $n \rightarrow \infty$, $Var(\hat{\beta_1}) \rightarrow 0$  because $ \frac{\sigma^2}{TSS_1}$ also approaches zero.  Minimizing multicolinearity also minimizes $\frac{1}{1-R^2_1}$ and as $\frac{1}{1-R^2_1} \rightarrow 0$ so does $Var(\hat{\beta_1}) \rightarrow 0$.  

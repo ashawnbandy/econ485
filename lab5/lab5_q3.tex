@@ -1,4 +1,33 @@
-\item Use your results from L1 for this problem. %TODO
-	\begin{enumerate}[a.]		\item Use your results from part j of L1. Calculate the Chi-square statistic for the Breusch-Pagan test. Since this model has 10 explanatory variables, this statistic has 10 degrees of freedom and the critical Chi-Square value is 18.31. Write down the null and alternative hypothesis for the Breusch-Pagan test and whether or not you reject the null (or fail to reject the null) based on your results.
-		\item Is your conclusion about heteroscedasticity in part a of this problem the same as what you found using the standard STATA Breusch-Pagan test (L1, part l)? I know the values will be different, but did you come to the same conclusion regarding the errors?		\item Based on your answer to part a of this problem and the results of the STATA Breusch- Pagan and White’s test in L1 (parts l and m), which model (L1 part e or L1 part n) is consistent with your results?		\item Using the best model (you identified in part c) interpret the coefficient on team salary (teamsal).		\item Are there any variables missing from this model that might be biasing the results? Which ones? Explain.
+\item Use your results from L1 for this problem. 
+	\begin{enumerate}[a.]
+		\item Use your results from part j of L1. Calculate the Chi-square statistic for the Breusch-Pagan test. Since this model has 10 explanatory variables, this statistic has 10 degrees of freedom and the critical Chi-Square value is 18.31. Write down the null and alternative hypothesis for the Breusch-Pagan test and whether or not you reject the null (or fail to reject the null) based on your results.\\
+		
+			{\begin{center}
+				$H_0$: Model is homoscedastic.\\
+				$H_A:$ Model is heteroscedastic. \hfill \\
+				$R^2$ = 0.0882\\
+				n = 353\\
+				Calculated $\chi^2$ = $R^2 * n$ = 0.0882 * 353 = 31.1346\\
+				Critical $\chi^2$ value  $ = 18.31 < |31.1346|$\\
+			\end{center}}
+			
+		Because the calculated $\chi^2$ is greater than the critical $\chi^2$ value we can reject the null hypothesis that variance is constant.\\
+		
+		\item Is your conclusion about heteroscedasticity in part a of this problem the same as what you found using the standard STATA Breusch-Pagan test (L1, part l)? I know the values will be different, but did you come to the same conclusion regarding the errors?\\
+		
+		Yes, my conclusion is the same in part a as that reached by the estat hettest.\\
+		
+		\item Based on your answer to part a of this problem and the results of the STATA Breusch-Pagan and White’s test in L1 (parts l and m), which model (L1 part e or L1 part n) is consistent with your results?\\
+		
+		I would expect the model in part n to be consistent with the results in part a, the Breusch-Pagan test and the White test because it includes the \emph{robustness} option.\\
+		
+		\item Using the best model (you identified in part c) interpret the coefficient on team salary (teamsal).\\
+		
+		For each additional unit (presumably dollars) of team salary, a player may expect a 0.0212 unit (presumably dollars) increase in salary, holding the other variables constant.\\
+		
+		\item Are there any variables missing from this model that might be biasing the results? Which ones? Explain.\\
+		
+		Given the Root MSE, yes, there are likely variables missing from this model.  lsalary is a good candidate and would have been included in the model in part L1.o if I knew what lsalary represented.  After including it in the model in part L1.n (see below), I find that $R^2$ for the model is 0.86 and that the coefficient for lsalary is 913296 and is significant at the 5\% level.  My best guess is that this is an important variable, but, again, I do not know what it means and so I cannot say that it should be included.
+		
+		\verbatiminput{lab5_q3_output.txt}
 	\end{enumerate}
