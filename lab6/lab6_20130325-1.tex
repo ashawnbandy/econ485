@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage{mathtools}
+\usepackage[top=2in, bottom=1.5in, left=1in, right=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[normalem]{ulem}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage{verbatim}
+\pagestyle{fancyplain}
+
+\includeonly{lab6_q1,lab6_q2}
+
+\rhead{A. Shawn Bandy 
+(003635396)}
+\lhead{Economics 485}
+\begin{document}
+\title{Homework \#5}
+\author{A. Shawn Bandy}
+\date{March 14th, 2013}
+\maketitle
+	\section{Lab Problems}
+		\begin{enumerate}[L1]
+			\item 
+				\begin{description}
+					\item{STATA log:}
+					{\small{
+						\verbatiminput{lab6demo.log}
+					}}
+				\end{description}
+			
+		\end{enumerate}
+\begingroup
+	\section{Questions}\hfill\\
+		\let\clearpage\relax
+		\begin{enumerate}[Q1]
+			\include{lab6_q1}
+			\include{lab6_q2}
+		\end{enumerate}
+\endgroup
+\end{document}
