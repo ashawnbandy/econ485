@@ -1,20 +1,58 @@
 \item Use your results from L1 for this problem.
 	\begin{enumerate}[a.]
-		\item Is there a problem with heteroskedasticity? Explain how you know.
+		\item Is there a problem with heteroskedasticity? Explain how you know.\\
+		
+		Yes, heteroskedasticity was evident at the 95\% confidence level for each model.  When \emph{estate hettest} was run for each, the p-value is less than 0.05 which means that we should reject the null hypothesis which is that the data is homoskedastic.
+		
 		\item For each of the models below (which correspond to the models from part b of L1, interpret the coefficients identified here.
 			\begin{enumerate}[i.]
-				\item Dependent variable: wage; explanatory variables are female nonwhite union education exper. Interpret the coefficient on exper
-				\item Dependent variable: annual\_wage; explanatory variables are female nonwhite union education exper. Interpret the coefficient on exper 
-				\item Dependent variable: lnwage; explanatory variables are female nonwhite union education exper Interpret the coefficient on exper
-				\item Dependent variable: lnwage; explanatory variables are female nonwhite union education lnexp. Interpret the coefficient on lnexp
-				\item Dependent variable: lnwage; explanatory variables are female nonwhite union education exper exp\_squared - Interpret the effect of experience on wages, using exper and exp\_squared 
-				\item Dependent variable: lnwage; explanatory variables are female nonwhite union college some\_college exper - Interpret the effect of having at least 4 years of college on wages
+				\item Dependent variable: wage; explanatory variables are female nonwhite union education exper. Interpret the coefficient on exper\\
+				
+				For each unit increase of exper, there is  a .1666065 increase in wage, ceteris paribus.\\
+				
+				\item Dependent variable: annual\_wage; explanatory variables are female nonwhite union education exper. Interpret the coefficient on exper \\
+				
+				There is an error in my regression \- I mistakenly included exp\_squared in this model so the following value of the coefficient is incorrect.  For each unit increase of exper, there is a 1018.71 increase in annual\_wage, ceteris paribus.  \\
+				
+				\item Dependent variable: lnwage; explanatory variables are female nonwhite union education exper Interpret the coefficient on exper\\
+				
+				For each unit increase in exper, there is a 1.289\% increase in wage, ceteris paribus.\\
+				
+				\item Dependent variable: lnwage; explanatory variables are female nonwhite union education lnexp. Interpret the coefficient on lnexp\\
+				
+				For each percent increase in exper, there is a .2112\% increase in wage, ceteris paribus.  This is the wage elasticity with respect to exper.\\
+				
+				\item Dependent variable: lnwage; explanatory variables are female nonwhite union education exper exp\_squared - Interpret the effect of experience on wages, using exper and exp\_squared \\
+				
+				For each unit of exper, there is a 3.9\% increase in wage.  Also, for each additional unit of exper, there is 0.06\% drop in wage - this signifies a decreased return to wages with respect to experience.\\
+				
+				\item Dependent variable: lnwage; explanatory variables are female nonwhite union college some\_college exper - Interpret the effect of having at least 4 years of college on wages\\
+				For those who have some\_college but have not graduated, we expect their wage to be 3.14\% above those with only high school, ceteris paribus.\\		
 			\end{enumerate}
-		\item Why did we leave no\_college out of the final model (estimated in L1, parts b, vi)?
+		\item Why did we leave no\_college out of the final model (estimated in L1, parts b, vi)?\\
+		If all three categorical variables are included then the model would have perfect collinearity.  Stata will general omit one of the variables with warnings but it is generally better to choose one ourselves.\\
+		
 		\item In L1, parts c, d, and e you used STATA to calculate an F-statistic. Write out the formula for that F-statistic here. What is the null hypothesis for this F-test? If the critical F-value with 2, 1282 degrees of freedom at the 5\% level is 3.00, would you reject the null hypothesis? What is your conclusion here?
-		\item Is the test in L1 part f the same as the test in part e? What is your conclusion based on the result in part f?
-		\item In L1 part g and h, you created a new variable and ran a regression on that new variable. What is the null hypothesis you are testing? Based on that hypothesis, demonstrate (show) how we transform our original equation (L1 part b, vi) to the one in L1 part h.
-		\item Based on the results from L1 part h, what is your conclusion about the hypothesis you are testing (in other words, the hypothesis you outlined in Q2, part d)?
-		\item What does the test in L1 part i tell us? Why couldn’t we calculate this particular test using scalars?
-		\item Is there a problem with multicollinearity in the model in L1 part b iv? How do you know?
+		
+		In this section of the lab we are testing for the joint significance of union and non-white.  Our formula was $\frac{\frac{rss_r-rss_u}{2}}{\frac{rss_u}{1289}}$ where $rss_r$ is the residuals sum-of-squares for the restricted model and $rss_u$ is the residual sum-of-squares from the unrestricted model.  The $H_0$ is that the variables are not jointly significant (taken together their coefficients are not different from zero).  We would reject the null hypothesis at the 5\% significance level and conclude that the variables are jointly significant.  \\
+		
+		\item Is the test in L1 part f the same as the test in part e? What is your conclusion based on the result in part f?\\
+		
+		We are testing for the same phenomenon as part f as in part e and we receive the same result in both as well:  we can reject the null hypothesis and assume that there is joint significance between union and non-white.\\
+		
+		\item In L1 part g and h, you created a new variable and ran a regression on that new variable. What is the null hypothesis you are testing? Based on that hypothesis, demonstrate (show) how we transform our original equation (L1 part b, vi) to the one in L1 part h.\\
+		
+		The $H_0$ is the coefficients for college and some\_college are the same.  We take the two variables in L1.b.vi, some\_college and college and add the together to create a new variable called all\_college.  We use the new variable in a regression with either some\_college or college.  In this case our regression used college.  The t-stat for the coefficient of the new variable can be used to test our null hypothesis.  \\
+		\item Based on the results from L1 part h, what is your conclusion about the hypothesis you are testing (in other words, the hypothesis you outlined in Q2, part d)?\\
+		
+		Based on the results from L1.h, we can reject the null hypothesis and assume that the variables are different from each other at the 5\% significance level.  \\
+		
+		\item What does the test in L1 part i tell us? Why couldn’t we calculate this particular test using scalars?\\
+		
+		L1.i tells us the same thing with different numbers.  We may reject the null hypothesis at the 5\% significance level.  I am not sure what the second question is asking.\\
+		
+		\item Is there a problem with multicollinearity in the model in L1 part b iv? How do you know?\\
+		
+		The model in L1.b.iv is reasonably free of multicollinearity (all the values in the VIF output are less than 5).\\
+		
 	\end{enumerate}
