@@ -1,0 +1,263 @@
+--------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /Users/shawn/src/econ485/lab8/lab8.log
+  log type:  text
+ opened on:   1 May 2013, 19:46:55
+
+. /*a. Use OLS regression to estimate the following model.
+> i. Dependent variable: approve, this indicates the person had their loan
+> approved; explanatory variables are hrat loanprc unem_ind male married dep school cosign chist bankrupt mort
+> late1 mortlate2 high_vacancy white 
+> */
+> 
+> regress approve hrat loanprc unem_ind male married dep school cosign chist bankrupt mortlate1 mortlate2 high
+> _vacancy white;
+
+      Source |       SS       df       MS              Number of obs =    1129
+-------------+------------------------------           F( 14,  1114) =   13.02
+       Model |  17.4548957    14  1.24677826           Prob > F      =  0.0000
+    Residual |  106.685051  1114   .09576755           R-squared     =  0.1406
+-------------+------------------------------           Adj R-squared =  0.1298
+       Total |  124.139947  1128  .110053144           Root MSE      =  .30946
+
+------------------------------------------------------------------------------
+     approve |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        hrat |   -.002343   .0012929    -1.81   0.070    -.0048798    .0001939
+     loanprc |  -.2308079    .050282    -4.59   0.000    -.3294659   -.1321499
+    unem_ind |  -.0092055   .0042917    -2.14   0.032    -.0176262   -.0007848
+        male |  -.0018928    .025833    -0.07   0.942    -.0525795    .0487939
+     married |   .0270134    .022177     1.22   0.223       -.0165    .0705268
+         dep |  -.0012066    .008995    -0.13   0.893    -.0188556    .0164425
+      school |   .0235984     .02298     1.03   0.305    -.0214905    .0686874
+      cosign |   .0430834   .0570779     0.75   0.451    -.0689089    .1550757
+       chist |   .0778704   .0266316     2.92   0.004     .0256165    .1301242
+    bankrupt |  -.2775626   .0401785    -6.91   0.000    -.3563966   -.1987286
+   mortlate1 |  -.1231576   .0622179    -1.98   0.048    -.2452351     -.00108
+   mortlate2 |  -.1135754   .0911409    -1.25   0.213    -.2924027    .0652518
+high_vacancy |  -.0312386   .0190719    -1.64   0.102    -.0686595    .0061824
+       white |   .1307452     .02629     4.97   0.000     .0791617    .1823286
+       _cons |   .9709887   .0696573    13.94   0.000     .8343144    1.107663
+------------------------------------------------------------------------------
+
+. outreg2 using l1a, excel;
+l1a.xml
+dir : seeout
+
+. /*b. Use logit to estimate the following model.
+> i. Dependent variable: approve, this indicates the person had their loan
+> approved; explanatory variables are hrat loanprc unem_ind male married dep school cosign chist bankrupt mort
+> late1 mortlate2 high_vacancy white*/
+> 
+> logit approve hrat loanprc unem_ind male married dep school cosign chist bankrupt mortlate1 mortlate2 high_v
+> acancy white;
+
+Iteration 0:   log likelihood = -427.07309  
+Iteration 1:   log likelihood = -375.10341  
+Iteration 2:   log likelihood = -359.21725  
+Iteration 3:   log likelihood = -358.84609  
+Iteration 4:   log likelihood = -358.84587  
+Iteration 5:   log likelihood = -358.84587  
+
+Logistic regression                               Number of obs   =       1129
+                                                  LR chi2(14)     =     136.45
+                                                  Prob > chi2     =     0.0000
+Log likelihood = -358.84587                       Pseudo R2       =     0.1598
+
+------------------------------------------------------------------------------
+     approve |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        hrat |  -.0275274   .0130925    -2.10   0.036    -.0531883   -.0018665
+     loanprc |  -2.658952   .5933799    -4.48   0.000    -3.821955   -1.495949
+    unem_ind |  -.0798995   .0409675    -1.95   0.051    -.1601944    .0003955
+        male |  -.0227519   .2654709    -0.09   0.932    -.5430653    .4975615
+     married |   .3085338   .2288233     1.35   0.178    -.1399516    .7570192
+         dep |   .0063583     .09827     0.06   0.948    -.1862473    .1989638
+      school |   .2104498   .2291448     0.92   0.358    -.2386657    .6595653
+      cosign |   .5403811   .6952712     0.78   0.437    -.8223255    1.903088
+       chist |   .7160148   .2357092     3.04   0.002     .2540334    1.177996
+    bankrupt |  -1.577179   .2959106    -5.33   0.000    -2.157153   -.9972051
+   mortlate1 |  -.9114942    .516367    -1.77   0.078    -1.923555    .1005666
+   mortlate2 |  -1.006185   .7677763    -1.31   0.190    -2.510999    .4986289
+high_vacancy |  -.3248466   .1997244    -1.63   0.104    -.7162992    .0666061
+       white |    .980196   .2207503     4.44   0.000     .5475335    1.412859
+       _cons |   3.823727   .7364631     5.19   0.000     2.380286    5.267169
+------------------------------------------------------------------------------
+
+. /*c. Estimate the marginal effects of each variable using the mean value of all dependent variables using ma
+> rgins and atmeans.*/
+> 
+> margins, dydx( hrat loanprc unem_ind male married dep school cosign chist bankrupt mortlate1 mortlate2 high_
+> vacancy white) atmean;
+
+Conditional marginal effects                      Number of obs   =       1129
+Model VCE    : OIM
+
+Expression   : Pr(approve), predict()
+dy/dx w.r.t. : hrat loanprc unem_ind male married dep school cosign chist bankrupt mortlate1 mortlate2
+               high_vacancy white
+at           : hrat            =    24.99965 (mean)
+               loanprc         =    .7770578 (mean)
+               unem_ind        =    3.933127 (mean)
+               male            =    .8193091 (mean)
+               married         =    .6651904 (mean)
+               dep             =     .789194 (mean)
+               school          =    .7767936 (mean)
+               cosign          =    .0274579 (mean)
+               chist           =    .8467671 (mean)
+               bankrupt        =    .0602303 (mean)
+               mortlate1       =    .0230292 (mean)
+               mortlate2       =    .0106289 (mean)
+               high_vacancy    =    .4136404 (mean)
+               white           =    .8423384 (mean)
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      dy/dx   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        hrat |  -.0022873   .0010783    -2.12   0.034    -.0044008   -.0001739
+     loanprc |  -.2209402   .0475649    -4.65   0.000    -.3141657   -.1277147
+    unem_ind |  -.0066391   .0033977    -1.95   0.051    -.0132984    .0000202
+        male |  -.0018905   .0220579    -0.09   0.932    -.0451232    .0413421
+     married |    .025637   .0189388     1.35   0.176    -.0114823    .0627563
+         dep |   .0005283   .0081643     0.06   0.948    -.0154735    .0165302
+      school |   .0174869   .0190367     0.92   0.358    -.0198244    .0547982
+      cosign |   .0449019   .0576884     0.78   0.436    -.0681653     .157969
+       chist |   .0594958   .0193902     3.07   0.002     .0214917    .0974998
+    bankrupt |  -.1310525   .0257742    -5.08   0.000     -.181569    -.080536
+   mortlate1 |  -.0757387   .0429695    -1.76   0.078    -.1599574    .0084799
+   mortlate2 |  -.0836069   .0637277    -1.31   0.190    -.2085109    .0412971
+high_vacancy |  -.0269925   .0165356    -1.63   0.103    -.0594016    .0054167
+       white |   .0814474    .018359     4.44   0.000     .0454645    .1174303
+------------------------------------------------------------------------------
+
+. /*d. Estimate the marginal effects of each variable as the average of the marginal effects using margins.*/
+> margins, dydx( hrat loanprc unem_ind male married dep school cosign chist bankrupt mortlate1 mortlate2 high_
+> vacancy white);
+
+Average marginal effects                          Number of obs   =       1129
+Model VCE    : OIM
+
+Expression   : Pr(approve), predict()
+dy/dx w.r.t. : hrat loanprc unem_ind male married dep school cosign chist bankrupt mortlate1 mortlate2
+               high_vacancy white
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      dy/dx   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        hrat |  -.0025541   .0012134    -2.10   0.035    -.0049324   -.0001758
+     loanprc |  -.2467099   .0546889    -4.51   0.000    -.3538982   -.1395217
+    unem_ind |  -.0074134   .0037948    -1.95   0.051    -.0148511    .0000242
+        male |   -.002111    .024632    -0.09   0.932    -.0503888    .0461667
+     married |   .0286272   .0212268     1.35   0.177    -.0129767    .0702311
+         dep |   .0005899   .0091183     0.06   0.948    -.0172816    .0184615
+      school |   .0195265   .0212501     0.92   0.358     -.022123     .061176
+      cosign |   .0501391   .0644924     0.78   0.437    -.0762637    .1765418
+       chist |   .0664352    .021798     3.05   0.002     .0237119    .1091585
+    bankrupt |   -.146338   .0264733    -5.53   0.000    -.1982248   -.0944513
+   mortlate1 |  -.0845727   .0477961    -1.77   0.077    -.1782514     .009106
+   mortlate2 |  -.0933585   .0711689    -1.31   0.190     -.232847    .0461299
+high_vacancy |  -.0301408    .018512    -1.63   0.103    -.0664236     .006142
+       white |   .0909471   .0202593     4.49   0.000     .0512396    .1306547
+------------------------------------------------------------------------------
+
+. /*e. Since male is a discrete dummy variable, use margins and male = (0 1) to get the marginal effects.*/
+> margins, at(white = (0 1));
+
+Predictive margins                                Number of obs   =       1129
+Model VCE    : OIM
+
+Expression   : Pr(approve), predict()
+
+1._at        : white           =           0
+
+2._at        : white           =           1
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |     Margin   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         _at |
+          1  |   .7853829   .0274062    28.66   0.000     .7316676    .8390981
+          2  |   .8962455   .0096968    92.43   0.000       .87724    .9152509
+------------------------------------------------------------------------------
+
+. /*f. Use probit to estimate the following model.
+> i. Dependent variable: approve, this indicates the person had their loan
+> approved; explanatory variables are hrat loanprc unem_ind male married dep school cosign chist bankrupt mort
+> late1 mortlate2 high_vacancy white*/
+> 
+> probit approve hrat loanprc unem_ind male married dep school cosign chist bankrupt mortlate1 mortlate2 high_
+> vacancy white;
+
+Iteration 0:   log likelihood = -427.07309  
+Iteration 1:   log likelihood = -360.21513  
+Iteration 2:   log likelihood = -358.10227  
+Iteration 3:   log likelihood = -358.09673  
+Iteration 4:   log likelihood = -358.09673  
+
+Probit regression                                 Number of obs   =       1129
+                                                  LR chi2(14)     =     137.95
+                                                  Prob > chi2     =     0.0000
+Log likelihood = -358.09673                       Pseudo R2       =     0.1615
+
+------------------------------------------------------------------------------
+     approve |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        hrat |  -.0135664   .0068335    -1.99   0.047    -.0269598    -.000173
+     loanprc |  -1.472842   .3234929    -4.55   0.000    -2.106877   -.8388076
+    unem_ind |  -.0436724    .022401    -1.95   0.051    -.0875775    .0002328
+        male |  -.0022475   .1418946    -0.02   0.987    -.2803558    .2758607
+     married |   .1596008   .1218806     1.31   0.190    -.0792807    .3984824
+         dep |  -.0005295   .0518209    -0.01   0.992    -.1020967    .1010377
+      school |   .1059921   .1251761     0.85   0.397    -.1393485    .3513328
+      cosign |   .2868798   .3672053     0.78   0.435    -.4328294    1.006589
+       chist |   .3824942   .1328699     2.88   0.004      .122074    .6429144
+    bankrupt |  -.9169555   .1734877    -5.29   0.000    -1.256985    -.576926
+   mortlate1 |  -.5067942   .2896844    -1.75   0.080    -1.074565    .0609768
+   mortlate2 |  -.5938387   .4167723    -1.42   0.154    -1.410697      .22302
+high_vacancy |  -.1970612   .1060091    -1.86   0.063    -.4048351    .0107128
+       white |    .537414   .1246858     4.31   0.000     .2930342    .7817937
+       _cons |   2.154494   .3974403     5.42   0.000     1.375525    2.933463
+------------------------------------------------------------------------------
+
+. /*g. Estimate the marginal effects from using probit of each variable as the average of the
+> marginal effects using margins.*/
+> 
+> margins, dydx( hrat loanprc unem_ind male married dep school cosign chist bankrupt mortlate1 mortlate2 high_
+> vacancy white);
+
+Average marginal effects                          Number of obs   =       1129
+Model VCE    : OIM
+
+Expression   : Pr(approve), predict()
+dy/dx w.r.t. : hrat loanprc unem_ind male married dep school cosign chist bankrupt mortlate1 mortlate2
+               high_vacancy white
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      dy/dx   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        hrat |  -.0023444   .0011809    -1.99   0.047    -.0046589   -.0000298
+     loanprc |  -.2545185    .055422    -4.59   0.000    -.3631436   -.1458934
+    unem_ind |  -.0075469   .0038648    -1.95   0.051    -.0151217    .0000279
+        male |  -.0003884   .0245206    -0.02   0.987    -.0484478    .0476711
+     married |   .0275803   .0210582     1.31   0.190    -.0136931    .0688536
+         dep |  -.0000915    .008955    -0.01   0.992     -.017643      .01746
+      school |   .0183163   .0216291     0.85   0.397    -.0240759    .0607084
+      cosign |    .049575   .0634456     0.78   0.435    -.0747761    .1739261
+       chist |    .066098   .0229046     2.89   0.004     .0212057    .1109902
+    bankrupt |   -.158457   .0292084    -5.43   0.000    -.2157045   -.1012095
+   mortlate1 |   -.087578   .0499713    -1.75   0.080    -.1855198    .0103639
+   mortlate2 |  -.1026199   .0719063    -1.43   0.154    -.2435536    .0383138
+high_vacancy |  -.0340537   .0182738    -1.86   0.062    -.0698696    .0017622
+       white |   .0928693   .0213516     4.35   0.000      .051021    .1347176
+------------------------------------------------------------------------------
+
+. log close;
+      name:  <unnamed>
+       log:  /Users/shawn/src/econ485/lab8/lab8.log
+  log type:  text
+ closed on:   1 May 2013, 19:46:57
+--------------------------------------------------------------------------------------------------------------

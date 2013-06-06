@@ -1,0 +1,77 @@
+\documentclass[letterpaper, **24pt**]{article}
+\usepackage{mathtools}
+\usepackage[top=2in, bottom=1.5in, left=1in, right=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[normalem]{ulem}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage{setspace}
+\usepackage[T1]{fontenc} 
+\usepackage{lmodern}
+\usepackage{breqn}
+\usepackage[compact]{titlesec} 
+\pagestyle{fancyplain}
+
+
+\lhead{ECON 485 - Econometrics I}
+
+\rhead{Group 1}
+
+\includeonly{introduction, dataoverview, model, regresults, sumstat, varlist, results, litreview, conclusion}
+
+\begin{document}
+
+\title{Wal-Mart and Obesity}
+\author{A. Shawn Bandy, Tony Bui, Vincent Larouche, Matthew Pinchback}
+\date{May 9\textsuperscript{th}, 2013}
+\maketitle
+\fontsize{12bp}{14bp}\selectfont
+
+\begin{abstract}
+The Center for Disease Control (CDC) estimates 32 percent of American men and 35 percent of women are obese as of 2010.  In 2012, medical costs associated with obesity were estimated by the CDC to be 190 million dollars.\footnote{Jens Ludwig, et al. Neighborhoods, Obesity, and Diabetes. New England Journal of Medicine 365 No 16. http://dx.doi.org/10.1056/NEJMsa1103216}  Wal-Mart Stores, Inc. is a multinational discount retailer with approximately 3000 "Supercenters" in the United States.   Wal-Mart Supercenter stores average 197,000 square feet and provide full-service supermarkets.  Grocery accounts for 55\% of 274 million dollars in net U.S. sales.\footnote{Wal-Mart Stores Inc., 2012 Annual Report, http://az204679.vo.msecnd.net/media/documents/2013-annual-report_130108806067963477.pdf Accessed May 09 2013. }  We explore the possible relationship between the relative concentration of Wal-Mart stores and the obesity rate at the county level.
+\end{abstract}
+\newpage
+
+
+\begin{doublespace}
+\begingroup
+	\section{Introduction and Motivation}\hfill\\
+		\let\clearpage\relax
+			\include{introduction}
+\endgroup
+\begingroup
+	\section{Literature Review}\hfill\\
+		\let\clearpage\relax
+			\include{litreview}
+			
+\endgroup
+\begingroup
+	\section{Theoretical Framework}\hfill\\
+		\let\clearpage\relax
+			\include{dataoverview}
+			\include{model}
+			
+\endgroup
+\begingroup
+	\section{Results}\hfill
+		\let\clearpage\relax
+			\include{results}
+\endgroup
+\begingroup
+	\section{Conclusion}\hfill\\
+		\let\clearpage\relax
+			\include{conclusion}
+\endgroup
+
+\begingroup
+\let\clearpage\relax
+\appendix
+			\section{Tables}
+			\include{varlist}
+			\include{sumstat}
+			\include{regresults}
+			
+\endgroup		
+
+\end{doublespace}
+\end{document}

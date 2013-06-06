@@ -1,0 +1,29 @@
+\documentclass[]{article}
+\setlength{\pdfpagewidth}{8.5in} \setlength{\pdfpageheight}{11in}
+\begin{document}
+\begin{tabular}{lcccc}
+\multicolumn{5}{c}{Wage Regression} \\\ \hline
+ & (1) & (2) & (3) & (4) \\\
+VARIABLES & OLS & IV & IV & IV \\\ \hline
+ &  &  &  &  \\\
+educ & 0.0714*** & 0.0979*** & 0.0979*** & 0.0979*** \\\
+ & (0.00597) & (0.0204) & (0.0204) & (0.0204) \\\
+exper & 0.0447*** & 0.0544*** & 0.0544*** & 0.0544*** \\\
+ & (0.00375) & (0.00810) & (0.00810) & (0.00810) \\\
+black & -0.190*** & -0.172*** & -0.172*** & -0.172*** \\\
+ & (0.0377) & (0.0400) & (0.0400) & (0.0400) \\\
+smsa & 0.143*** & 0.133*** & 0.133*** & 0.133*** \\\
+ & (0.0272) & (0.0284) & (0.0284) & (0.0284) \\\
+Constant & 4.898*** & 4.452*** & 4.452*** & 4.452*** \\\
+ & (0.106) & (0.346) & (0.346) & (0.346) \\\
+ &  &  &  &  \\\
+Observations & 1,184 & 1,184 & 1,184 & 1,184 \\\
+R-squared & 0.172 & 0.159 & 0.159 & 0.159 \\\
+r2\_a & 0.170 & 0.156 & 0.156 & 0.156 \\\
+widstat &  & 55.64 & 55.64 & 55.64 \\\
+sarganp &  & 0.323 & 0.323 & 0.323 \\\
+ exexog &  & nearc4 fatheduc & nearc4 fatheduc & nearc4 fatheduc \\\ \hline
+\multicolumn{5}{c}{ Standard errors in parentheses} \\\
+\multicolumn{5}{c}{ *** p$<$0.01, ** p$<$0.05, * p$<$0.1} \\\
+\end{tabular}
+\end{document}

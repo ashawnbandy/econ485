@@ -1,0 +1,54 @@
+\item Use the results from L1 to answer this question.
+\begin{enumerate}[a.]
+	\item Assuming you don’t have any violations of OLS, interpret the coefficient on “white” from the regression you ran in L1, part a).\\
+	
+		Being white as opposed to being black increases the probability of being approved for a loan by about 13\%, all other things held constant.\\
+		
+	\item Use the following values and the coefficients from L1, part a). What is the estimated probability? Hint: Only use statistically significant coefficients with p-values less than 0.10.\\
+	
+		The estimated probability is 0.9128844.\\
+		
+	\item What is a potential problem with using the model you estimated in L1, part a)?\\
+	
+		It was possible for the estimated probability to not be in the interval [0..1].
+		
+	\item Use your results from the model you estimated in L1, part b). Does there appear to be a positive or negative impact on the probability of getting a loan from being white relative to being black?\\
+		
+		Being white appears to have a positive impact on the probability of getting a loan.\\
+		
+	\item Use your marginal results from L1, part c). Interpret the marginal effect for the variable white.\\
+		
+		Being white increases the probability of being approved for a loan by about 8.14 percent.  These are for the mean value of 'white' in the sample but 'white' is a dummy variable that can only take the values of 0 or 1.\\
+		
+	\item Use your marginal results from L1, part d). Interpret the marginal effect for the variable white.\\
+		
+		Being white increases the probability of being approved for a loan by 9.09 percent.\\
+		
+	\item Are the marginal results from parts e) and f) above the same? Explain why there might be a difference, even if it is small.\\
+	
+		No, they differ by about 0.85 percent.  In L1.d we are taking the calculating the partial effects for each observation and taking the mean whereas in L1.c we are taking the average values of the observations and then calculating the partial effect.\\
+		
+	\item Use your results from L1, part e). Calculate the difference between the two estimates. This is the marginal difference between being white and being nonwhite. Compare your answer to your answer in part g).\\
+	
+		noop (Although I ran it with white and got a difference of about 0.1108626.)\\
+		
+	\item Use your results from the model you estimated in L1, part f). Does there appear to be a positive or negative impact on the probability of getting a loan from being white relative to being black?\\
+		
+		There appears to be a positive impact on the probability of getting a loan from being white.\\
+		
+	\item Multiply the coefficient from L1 part f) on white by 1.81. How does this compare to the coefficient on white in L1 part b)? Explain.\\
+	
+		0.537414 * 1.81 = 0.97271934\\  I do not see any comparison (it is close to the constant in my regression from part b) so I have obviously missed something.\\
+
+	\item Use your results from L1, part g). Interpret the marginal effect for the variable white.\\
+	
+		Being white increases the probability of being approved for a loan by about 9.29 percent.
+	
+	\item Compare the marginal effect for the variable white as discussed in this question in parts f) and k).\footnote{I am assuming that we are being asked about the above answer in part k and not this answer which is part l.}
+	
+		The answers for the partial effect of white on the probability of being approved for a loan are very close - about .20 precent different.\\
+	
+	\item Based on these results, does there appear to be a racial bias in terms of who gets loans approved?\\
+	
+		Based on these result, there certainly appears to be a racial bias in terms of who gets loans approved.\\
+\end{enumerate}
